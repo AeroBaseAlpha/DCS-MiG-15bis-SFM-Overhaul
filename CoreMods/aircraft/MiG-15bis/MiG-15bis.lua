@@ -19,11 +19,11 @@ declare_weapon({category = CAT_SHELLS,name =   "N37_37x155_HEI_T",
   user_name		 = _("N37_37x155_HEI_T"),
   model_name     = "tracer_bullet_crimson",
   projectile      = "HE", -- added as this was not defined before
-  v0   = 690,
-  Dv0  = 0.0057, -- This is delta Velocity 0, IRL Mean Dv0 is is 4 mps, Table 15 4/ 690 = 0.00579 --page 120 Soviet Aircraft Projectile Manual
-  Da0  = 0.00083, -- Original Value Da0 = 0.0017,  Soviet Aircraft Projectile Manual page 127  Probable Error is .5 meters at 600 for the HEI in both the x and y axis. Therefore the Prob  radius  of dispersion is = .5/600 = Da0 = 0.00083  ,da0 * 8 = 100% dispersion diameter, da0 is the probable error = standard deviation of dispersion (sigma) * 0.6745   
-  Da1  = 0.0,
-  mass  = 0.735, -- Changed to Match Soviet Data Page 46 Table 6
+  v0   		  = 690, -- Muzzle Velocity of Projectile.
+  Dv0             = 0.0057, -- This is delta Velocity 0, IRL Mean Dv0 is is 4 mps, Table 15 4/ 690 = 0.00579 --page 120 Soviet Aircraft Projectile Manual
+  Da0             = 0.00083, -- Original Value Da0 = 0.0017,  Soviet Aircraft Projectile Manual page 127  Probable Error is .5 meters at 600 for the HEI in both the x and y axis. Therefore the Prob  radius  of dispersion is = .5/600 = Da0 = 0.00083  ,da0 * 8 = 100% dispersion diameter, da0 is the probable error = standard deviation of dispersion (sigma) * 0.6745   
+  Da1             = 0.0,
+  mass           = 0.735, -- Changed to Match Soviet Data Page 46 Table 6
   round_mass 	 = 1.250+0.115,		-- round + link
   cartridge_mass = 0.0,				-- 0.413+0.115, cartridges are ejected
   explosive      = 0.041, -- OG .41 KG IRL 37g + 8g Tracer  Table 8 Soviet Aircraft Projectile Manual
@@ -103,10 +103,10 @@ declare_weapon({category = CAT_SHELLS,name =   "NR23_23x115_API",
   user_name		 = _("NR23_23x115_API"),
   model_name     = "tracer_bullet_crimson",
   projectile      = "AP", -- added as this was not defined before
-  v0    		 = 680,
-  Dv0   		 = 0.0050,
-  Da0     		 = 0.0012, -- Soviet Aircraft Projectile Manual Page 127 Gives Probable Error (sigma *0.6745) as 0.6 meter at 500 Meters = .6/500 = dao 0.0012 
-  Da1     		 = 0.0,
+  v0    	 = 680,
+  Dv0   	 = 0.0050,
+  Da0     	 = 0.0012, -- Soviet Aircraft Projectile Manual Page 127 Gives Probable Error (sigma *0.6745) as 0.6 meter at 500 Meters = .6/500 = dao 0.0012 
+  Da1     	 = 0.0,
   mass      	 = 0.199,
   round_mass 	 = 0.340+0.071,		-- round + link
   cartridge_mass = 0.0,				-- 0.111+0.071, cartridges are ejected
@@ -166,7 +166,7 @@ function nr23(tbl)
 	tbl.elevation_initial 		= tbl.elevation_initial  or 0   
 	if  tbl.effects == nil then
 		tbl.effects = {{ name = "FireEffect"     , arg 		 = tbl.effect_arg_number or 436 },
-					   { name = "HeatEffectExt"  , shot_heat = 0.000, barrel_k = 0.462 * 2.7, body_k = 0.462 * 14.3 }, -- Set to 0 shot heat, the dispersion is modeled via Da0 .
+					   { name = "HeatEffectExt"  , shot_heat = 0.000, barrel_k = 0.462 * 2.7, body_k = 0.462 * 14.3 }, -- Set to 0, shot heat reduces MV and increases Da0, the dispersion is modeled via Da0 .
 					   { name = "SmokeEffect"}}
 	end 
 	return declare_weapon(tbl)
@@ -394,13 +394,13 @@ local base_MiG_15bis =  {
 				supply_position		 = {2.115, -0.45, 0.0},
 --				ejector_pos			 = {0.0, 0.0, 0.0},					--{-1.67, -0.07, -0.07}}),
 				ejector_pos_connector = "ejector_1",
-                mixes                 = {{1,2,1,1,1,2,1}}, -- added belt 70% HEI 30% APT per MiG-17 tech manual, Order of projectiles fired,  1 =HEI T, 2= API-T 
+                		mixes                 = {{1,2,1,1,1,2,1}}, -- added belt 70% HEI 30% APT per MiG-17 tech manual, Order of projectiles fired,  1 =HEI T, 2= API-T 
 				}),
 			nr23({
 				muzzle_pos_connector = "Gun_point_3",
 				effect_arg_number	 = 433,
-                		rates  = {861}, --  lowered mean + 1 so both 23mm can be fired at same time. When rates of guns are multi guns are = on F-86 They dont functon.
-				mixes	= {{2,1,1,2,1,1,1}}, -- Order of projectiles fired, added belt 70% HEI 30% APT per MiG-17 tech manual
+                		rates  			 = {861}, --  lowered mean + 1 so both 23mm can be fired at same time. When rates of guns are multi guns are = on F-86 They dont functon.
+				mixes			 = {{2,1,1,2,1,1,1}}, -- Order of projectiles fired, added belt 70% HEI 30% APT per MiG-17 tech manual
 				azimuth_initial		 = 0,
 				elevation_initial	 = 0,
 				supply_position		 = {2.436, -0.4, 0.0},
@@ -410,8 +410,8 @@ local base_MiG_15bis =  {
 			nr23({
 				muzzle_pos_connector = "Gun_point_007", --NR 23
 				effect_arg_number	 = 432,
-				mixes	= {{1,1,1,2,1,1,2}}, --added belt 70% HEI 30% APT per MiG-17 tech manual
-                		rates  = {859}, -- Lowered to mean -1 so both can fire at same time. called again so both cans be fired twice.
+				mixes			 = {{1,1,1,2,1,1,2}}, --added belt 70% HEI 30% APT per MiG-17 tech manual
+                		rates  			 = {859}, -- Lowered to mean -1 so both can fire at same time. called again so both cans be fired twice.
 				azimuth_initial		 = 0,
 				elevation_initial	 = 0,
 				supply_position		 = {1.866, -0.47, 0.0},
@@ -444,7 +444,7 @@ local base_MiG_15bis =  {
     },
 	
 	Tasks = {
-		aircraft_task(CAP),				-- 11, Combat Air Patrol
+	aircraft_task(CAP),				-- 11, Combat Air Patrol
         aircraft_task(CAS),				-- 31, Close air support
         aircraft_task(Escort),			-- 18,
         aircraft_task(FighterSweep),	-- 19,
@@ -496,7 +496,7 @@ local base_MiG_15bis =  {
 			-- Cymax - Coefficient, lift, SFM based on FIG 185 maximum possible (ignores other calculations if current Cy > Cymax), If Cy flap + Cy > Cymax, then Cy = Cymax.  
             -- Changes to SFM 
             -- Drag Polars tuned to match Figs 55 and 56.
-			-- Cy Max changes Based on Cy Fig 53 and flight test data Fig 183 to 185.
+	    -- Cy Max changes Based on Cy Fig 53 and flight test data Fig 183 to 185.
             -- Cy changes produced the same load factor limits at the same velocity as test data. Ref Fig 50, Fig 183, 184
             -- Aldop Set to 98% AOA Max. Note This higher than the IRL buffet limit of ~ 75 AOA max. AI will not pull AOA greater than Aldop. To get realistic aircraft performance out of AI Aldop has to be higher than Real buffet on set angle.
             -- Performance Limiting Factors of AI SFM are AI Level Cy Max, Aldop, and g_suit, Vopt    			 
