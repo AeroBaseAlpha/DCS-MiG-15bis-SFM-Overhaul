@@ -6,7 +6,8 @@
 -- Great care was taken to match the aerodynamic and performance data. 
 -- In the link Below, I've drawn this mod's drag profile on top of the Soviet Charts
 -- https://www.desmos.com/calculator/ugbgtle5oh
--- Similar work was done to compute the lift 
+-- Similar work was done to compute the lift profile.
+-- https://www.desmos.com/calculator/lkxljidb8u
 -- Weapon Dispersion, Paylod and ect were changed to match the data form the Soviet Aircraft Projectiles Technical Manual 
 -- References To The Manual "Soviet Aircraft Projectiles" refer to the following
 -- https://disk.yandex.com/i/YVj0XI6O3Mu4LM
@@ -268,7 +269,7 @@ local base_MiG_15bis =  {
 	M_fuel_max 					= 1172 ,    -- 1412 * 0.83, -- kg
 	H_max 					 	= 15500,    -- 15000 for test H max for 11560 rpm. -Table 8 Manual Original 15100 m
 	average_fuel_consumption 	= 0.43,      -- Table 19 this is highly relative, was .63 test/ but good estimates are 36-40l/min = 28-31kg/min = 0.47-0.52kg/s -- 45l/min = 35kg/min = 0.583kg/s 2270 kg per hour @ cruse = 0.63 kg per second, 2250 kg h Nominal = 0.78 kgs, Max 2890 kgh =0.802 kgs table 19
-	CAS_min 					= 50,       -- This is CAS Minutes TIME on Station in minute (for AI)  LOITER TIME, than it should be 10-15 minutes.....
+	CAS_min 					= 50,       -- This is Close Air Support Time on Station in Minutes, (for AI) LOITER TIME for aircraft_task(CAS), it should be 10-15 minutes.....
     -- M = 15600 lbs
 	V_opt 						= 367 / 3.6, -- velocity for L/D Max, Mach .3 at 0 m =367 TAS Kph. Setting V_opt to high and AI does not have enough lift to turn fighting,  Page 24 MiG Aero Manual. -- Mach .6 735 kph @ S.L. this also given as speed for L/D max fig 54 and note below, Max Climb is 710 table 5, Original Value is 850 m 0.7.   V cruse = 1.131 Vopt.                                                                                       
 	V_take_off 					= 76.8, 	-- Take off speed in m/s (for AI)  Figs, 25, and 30 275 KPH with 0 flaps and Weight - 5980 Original 63 mps
@@ -281,7 +282,7 @@ local base_MiG_15bis =  {
 	Ny_max 						= 8.0,  	-- Max G (for AI)
 	Ny_max_e 					= 12,       -- Ultimate G limit / structural G limit -- table 2 say 12g,
 	AOA_take_off 				= 0.122, 	-- AoA in take off radians (for AI) AOA for L/D  max
-	bank_angle_max 				= 90,	-- Max bank angle (for AI) Old 85 -table 18 Bank angle for min turn time clean  77, For 8 g 82.81. Old 85
+	bank_angle_max 				= 90,	--  Max bank angle (for AI; probably for orbit) Old 85 -table 18 Bank angle for min turn time clean  77, For 8 g 82.81. Old 85 
 
 
 	has_afteburner 				= false, 	-- AFB yes/no
@@ -291,8 +292,8 @@ local base_MiG_15bis =  {
 	wing_area 					= 20.6, 	-- wing area in m2 		
 	wing_span 					= 10.08 , 	-- wing span in m			
 	wing_type 					= 0,		-- Fixed wing				
-	thrust_sum_max 				= 2479,     -- changed to test 21161 n reduced to match installed power see Figure 80 Page 31 and Figs 82 and 84	
-	thrust_sum_ab 				= 2479, 	-- thrust in kg Old 26.0kN -- reduced to match installed power	
+	thrust_sum_max 				= 2479,     -- max thurst kgf of engine changed to reflect, 21161 newtons. Reduced to match installed power see Figure 80 Page 31 and Figs 82 and 84	
+	thrust_sum_ab 				= 2479, 	-- max thurst Afterburner in kgf Old 26.0kN -- reduced to match installed power	
 	length 						= 10.11, 	-- full lenght in m		
 	height 						= 3.7, 		-- height in m				
 	flaps_maneuver 				= 0, 		-- Max flaps in take-off and maneuver (0.5 = 1st stage; 1.0 = 2nd stage) (for AI) when 0, AI will land full flaps-- default = 0
@@ -460,10 +461,10 @@ local base_MiG_15bis =  {
 			Mzalfadt	=   0.8,  -- coefficients for pitch agility -- 
 			kjx	=	2,--2.3, -- Inertial parametre X roll  -- effects time to roll rate max. Per Yo Yo Kj - are the coefficients time constant in short-periodic movement depends on. https://forum.dcs.world/topic/74145-dcs-mods-structure-how-to-create-your-plugin-from-scratch/?do=findComment&comment=1680884
 			kjz	=	0.01,-- Inertial parametre Z Pitch equiv to Mass Moment of Inertia - MIG 15 and F-86 are the only SFMs where kjz does not =  0.00125
-			Czbe	=	-0.014, -- coefficient, Yaw due to side slip along Z axis (perpendicular), affects yaw, negative value means force orientation in FC coordinate system Fig 76 Gives Cz beta Cz -0.1 at 8 Beta
+			Czbe	=	-0.014, -- coefficient, Yaw coefficient due to side slip. along Z axis (perpendicular), affects yaw, negative value means force orientation in FC coordinate system Fig 76 Gives Cz beta Cz -0.1 at 8 Beta
 			cx_gear	=	0.02, --  Drag coefficient, Landing gear ?? -- cx0 increase when landing gear is deployed
 			cx_flap	=	0.06, -- coefficient, drag, full flaps Cx max 0.16 @ 1.15 AOA, W flap 55 Cy Max 1.46, Cx 2.6. @ Cy 1, Cx = 0.1 W/ flap Cx =0.14
-			cy_flap	=	0.35, -- coefficient, normal force, lift, flaps. Cy0+Cy_flap+(Cya*AOA)=Cy
+			cy_flap	=	0.35, -- coefficient, normal force, lift, from full flaps. Cy0+Cy_flap+(Cya*AOA)=Cy
 			cx_brk	=	0.026, -- coefficient, drag, air brakes 
 			table_data = 
 			{	--M		Cx0*	 	Cya*		B2		 	B4	 		Omxmax		Aldop*		Cymax*
