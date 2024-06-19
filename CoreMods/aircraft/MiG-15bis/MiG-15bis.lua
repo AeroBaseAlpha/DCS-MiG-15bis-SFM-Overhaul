@@ -297,12 +297,12 @@ local base_MiG_15bis =  {
 	length 					= 10.11, 	-- full lenght in m		
 	height 					= 3.7, 		-- height in m				
 	flaps_maneuver 				= 0, 		-- Max flaps in take-off and maneuver (0.5 = 1st stage; 1.0 = 2nd stage) (for AI) when 0, AI will land full flaps-- default = 0
-    flaps_transmission          = "Hydraulic",
-    undercarriage_transmission  = "Hydraulic",
-	range 						= 1240, 	-- Max range in km (for AI)
-	RCS 						= 2, 		-- Radar Cross Section m2
+    	flaps_transmission           		= "Hydraulic",
+   	undercarriage_transmission  		= "Hydraulic",
+	range 					= 1240, 	-- Max range in km (for AI)
+	RCS 					= 2, 		-- Radar Cross Section m2
 	IR_emission_coeff 			= 0.26,		-- Normal engine -- IR_emission_coeff = 1 is Su-27 without afterburner. It is reference.
-	IR_emission_coeff_ab 		= 0.26, 	-- With afterburner
+	IR_emission_coeff_ab 			= 0.26, 	-- With afterburner
 	wing_tip_pos 				= {-2.248,-0.212,4.9}, -- wingtip coords for visual effects
 	
 	nose_gear_pos 					= { 2.782, -1.416,	0},   -- nosegear coord 
@@ -312,10 +312,10 @@ local base_MiG_15bis =  {
 	nose_gear_wheel_diameter 					=  0.478, -- in m
 	
 	main_gear_pos 					= {-0.4  ,-1.249 , 1.905}, -- main gear coords (base = 3810)
-	main_gear_amortizer_direct_stroke	 	 =   0, --  down from main_gear_pos !!!
-	main_gear_amortizer_reversal_stroke  	 = 	-0.192, --  up 
-	main_gear_amortizer_normal_weight_stroke =  -0.06,-- down from main_gear_pos
-	main_gear_wheel_diameter 				 =   0.658, -- in m
+	main_gear_amortizer_direct_stroke	 	=  0, --  down from main_gear_pos !!!
+	main_gear_amortizer_reversal_stroke  	 	= -0.192, --  up 
+	main_gear_amortizer_normal_weight_stroke 	=  -0.06,-- down from main_gear_pos
+	main_gear_wheel_diameter 			=   0.658, -- in m
 	
 	nose_gear_door_close_after_retract		= false,
 	main_gear_door_close_after_retract		= false,
@@ -330,9 +330,9 @@ local base_MiG_15bis =  {
 			pos 				= {-4.105,-0.063,0}, -- nozzle coords
 			elevation 			= 0, -- AFB cone elevation
 			diameter 			= 0.675, -- AFB cone diameter
-			exhaust_length_ab 	= 3, -- lenght in m
-			exhaust_length_ab_K = 0.76, -- AB animation
-			smokiness_level     = 0.1, 
+			exhaust_length_ab 		= 3, -- lenght in m
+			exhaust_length_ab_K 		= 0.76, -- AB animation
+			smokiness_level     		= 0.1, 
 		}, -- end of [1]
 	}, -- end of engines_nozzles
 	crew_members = 
@@ -467,7 +467,7 @@ local base_MiG_15bis =  {
 			cy_flap	=	0.35, -- coefficient, normal force, lift, from full flaps. Cy0+Cy_flap+(Cya*AOA)=Cy
 			cx_brk	=	0.026, -- coefficient, drag, air brakes 
 			table_data = 
-			{	--M		Cx0*	 	Cya*		B2		 	B4	 		Omxmax		Aldop*		Cymax*
+			{	--M	Cx0*	 	Cya*		B2		 B4	 	Omxmax		Aldop*	Cymax*
                 		{ 0.0,	0.0195	,	0.058	,	0.076	,	0.022 	,	0.186	,	10   ,  1.100},
 				{ 0.1,	0.0183	,	0.066	,	0.076	,	0.0165 	,	0.372	,	15.5 ,	1.100},
 				{ 0.2,	0.0173	,	0.070	,	0.0739	,	0.014	,	0.600	,	16.5 ,	1.130},
@@ -475,16 +475,16 @@ local base_MiG_15bis =  {
 				{ 0.4,	0.016	,	0.0781	,	0.075	,	0.015  	,	1.100	,	14.0 ,	1.070},
 				{ 0.5,	0.0157	,	0.0825	,	0.078	,	0.015 	,	1.365	,	12.5 ,	1.010},
 				{ 0.6,	0.0158	,	0.087	,	0.078	,	0.015 	,	1.525	,	11.8 ,	0.950},
-				{ 0.7,	0.0160	,	0.088	,	0.074	,	0.025 	,	1.460	,	10.2,	0.872},
+				{ 0.7,	0.0160	,	0.088	,	0.074	,	0.025 	,	1.460	,	10.2 ,	0.872},
 				{ 0.8,	0.0168	,	0.096	,	0.075 	,	0.017 	,	1.250	,	8.3  ,	0.770},
-				{ 0.86,	0.0181	,	0.10	,	0.075	,	0.15	,	1.060	,	6.3	 ,	0.600},
-                		{ 0.88,	0.0197	,	0.099	,	0.065	,	0.29	,	0.952	,	7.2	 ,	0.684},
-				{ 0.9,	0.0232	,	0.098	,	0.088	,	0.36 	,	0.870   ,	7	 ,	0.658},
-				{ 0.92,	0.0300	,	0.094	,	0.095	,	0.45 	,	0.761   ,	7	 ,	0.629},
-               			{ 0.94,	0.0402	,	0.090	,	0.099	,	0.689	,	0.636	,	7	  ,	0.600},
-				{ 1.0,  0.0599	,	0.088	,	0.16 	,	0.58   	,	0.380	,	6	  ,	0.500},
-				{ 1.04,	0.0632	,	0.115	,	0.24 	,	0.89    ,	0.20	,   4.4	  ,	0.477},
-				{ 1.2,	0.0680	,	0.115	,	0.26 	,	8   	,	0.10 	,	2.2	  ,	0.239},
+				{ 0.86,	0.0181	,	0.10	,	0.075	,	0.15	,	1.060	,	6.3  ,	0.600},
+                		{ 0.88,	0.0197	,	0.099	,	0.065	,	0.29	,	0.952	,	7.2  ,	0.684},
+				{ 0.9,	0.0232	,	0.098	,	0.088	,	0.36 	,	0.870   ,	7    ,	0.658},
+				{ 0.92,	0.0300	,	0.094	,	0.095	,	0.45 	,	0.761   ,	7    ,	0.629},
+               			{ 0.94,	0.0402	,	0.090	,	0.099	,	0.689	,	0.636	,	7    ,	0.600},
+				{ 1.0,  0.0599	,	0.088	,	0.16 	,	0.58   	,	0.380	,	6    ,	0.500},
+				{ 1.04,	0.0632	,	0.115	,	0.24 	,	0.89    ,	0.20	,  	4.4  ,	0.477},
+				{ 1.2,	0.0680	,	0.115	,	0.26 	,	8   	,	0.10 	,	2.2  ,	0.239},
 			}, -- end of table_data
 			-- M - Mach number
 			-- Cx0 - Coefficient, drag, profile, of the airplane
