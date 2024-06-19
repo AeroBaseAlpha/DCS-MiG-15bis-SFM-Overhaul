@@ -19,11 +19,11 @@ declare_weapon({category = CAT_SHELLS,name =   "N37_37x155_HEI_T",
   user_name		 = _("N37_37x155_HEI_T"),
   model_name     = "tracer_bullet_crimson",
   projectile      = "HE", -- added as this was not defined before
-  v0    		 = 690,
-  Dv0   		 = 0.0057, -- This is delta Velocity 0, IRL Mean Dv0 is is 4 mps, Table 15 4/ 690 = 0.00579 --page 120 Soviet Aircraft Projectile Manual
-  Da0     		 = 0.00083, -- Original Value Da0 = 0.0017,  Soviet Aircraft Projectile Manual page 127  Probable Error is .5 meters at 600 for the HEI in both the x and y axis. Therefore the Prob  radius  of dispersion is = .5/600 = Da0 = 0.00083  ,da0 * 8 = 100% dispersion diameter, da0 is the probable error = standard deviation of dispersion (sigma) * 0.6745   
-  Da1     		 = 0.0,
-  mass      	 = 0.735, -- Changed to Match Soviet Data Page 46 Table 6
+  v0   = 690,
+  Dv0  = 0.0057, -- This is delta Velocity 0, IRL Mean Dv0 is is 4 mps, Table 15 4/ 690 = 0.00579 --page 120 Soviet Aircraft Projectile Manual
+  Da0  = 0.00083, -- Original Value Da0 = 0.0017,  Soviet Aircraft Projectile Manual page 127  Probable Error is .5 meters at 600 for the HEI in both the x and y axis. Therefore the Prob  radius  of dispersion is = .5/600 = Da0 = 0.00083  ,da0 * 8 = 100% dispersion diameter, da0 is the probable error = standard deviation of dispersion (sigma) * 0.6745   
+  Da1  = 0.0,
+  mass  = 0.735, -- Changed to Match Soviet Data Page 46 Table 6
   round_mass 	 = 1.250+0.115,		-- round + link
   cartridge_mass = 0.0,				-- 0.413+0.115, cartridges are ejected
   explosive      = 0.041, -- OG .41 KG IRL 37g + 8g Tracer  Table 8 Soviet Aircraft Projectile Manual
@@ -50,13 +50,13 @@ declare_weapon({category = CAT_SHELLS,name =   "N37_37x155_API_T",
   payload         = 0.008, -- has 8 grams of tracer no exp or incen
   payloadEffect   = "Thermal", -- trial of API params in WW2 Weapon file. 
   payloadMaterial = "Thermite", -- trial of API params  in WW2 Weapon file. 
-  v0    		 = 675,
-  Dv0   		 = 0.0059, -- mean error is 4 mps Dv0 = 4 / 675 mv
-  Da0     		 = 0.00067,  -- Original Value Da0 = 0.0017, da0 is the dispersion probable error = 0.4 meters at 600 meters Da0 = 0.4 / 600 Soviet Aircraft Projectile Manual page 127     
-  Da1     		 = 0.0,
+  v0    	= 675,
+  Dv0   	= 0.0059, -- mean error is 4 mps Dv0 = 4 / 675 mv
+  Da0     	 = 0.00067,  -- Original Value Da0 = 0.0017, da0 is the dispersion probable error = 0.4 meters at 600 meters Da0 = 0.4 / 600 Soviet Aircraft Projectile Manual page 127     
+  Da1     	 = 0.0,
   mass      	 = 0.753, -- Changed to Match Soviet Data Page 46 Table 6
-  round_mass 	 = 1.294+0.115,		-- round + link
-  cartridge_mass = 0.0,				-- 0.413+0.115, cartridges are ejected
+  round_mass 	 = 1.294+0.115,	-- round + link
+  cartridge_mass = 0.0,	-- 0.413+0.115, cartridges are ejected
   life_time      = 8.0, -- increased to 8 
   caliber        = 37.0,
   s              = 0.0,
@@ -76,10 +76,10 @@ declare_weapon({category = CAT_SHELLS,name =   "NR23_23x115_HEI_T",
   user_name		 = _("NR23_23x115_HEI_T"),
   model_name     = "tracer_bullet_crimson", -- Colors can be changed, "tracer_bullet_yellow" will also work
   projectile     = "HE", -- added as this was not defined before
-  v0    		 = 680, -- MIG 15 BS has NR23 mm with 1450 barrel v0 is 680  1600 mm barrel v0= 690
-  Dv0   		 = 0.0050,
-  Da0     		 = 0.0012, -- Soviet Aircraft Projectile Manual Page 127, Error Prob = 0.6 meter at 500 Meters = .6/500 = dao 0.0012   Gives Probable Error  as 
-  Da1     		 = 0.0,
+  v0    = 680, -- MIG 15 BS has NR23 mm with 1450 barrel v0 is 680  1600 mm barrel v0= 690
+  Dv0   = 0.0050,
+  Da0    = 0.0012, -- Soviet Aircraft Projectile Manual Page 127, Error Prob = 0.6 meter at 500 Meters = .6/500 = dao 0.0012   Gives Probable Error  as 
+  Da1     	 = 0.0,
   mass      	 = 0.196,
   round_mass 	 = 0.340+0.071,		-- round + link
   cartridge_mass = 0.0,				-- 0.111+0.071, cartridges are ejected
@@ -147,7 +147,7 @@ function nr23(tbl)
 	tbl.gun = 
 	{
 		max_burst_length = 80,
-		rates 			 = {950}, -- Set to max value Given as 800 to 950 MIG Bis Tech Manual Vol 2 Page
+		rates 		 = {950}, -- Set to max value Given as 800 to 950 MIG Bis Tech Manual Vol 2 Page
 		recoil_coeff 	 = 1,
 		barrels_count 	 = 1,
 	}
@@ -190,7 +190,7 @@ function n37(tbl)
 	tbl.gun = 
 	{
 		max_burst_length = 40,
-		rates 			 = {400},
+		rates 		= {400},
 		recoil_coeff 	 = 1,
 		barrels_count 	 = 1,
 	}
@@ -263,39 +263,39 @@ local base_MiG_15bis =  {
 	attribute  			= {wsType_Air, wsType_Airplane, wsType_Fighter, WSTYPE_PLACEHOLDER ,"Battleplanes",},
 	Categories 			= {"{78EFB7A2-FD52-4b57-A6A6-3BF0E1D6555F}", "Interceptor",},	
 	-------------------------
-	M_empty 					= 3753 ,    -- with pilot and nose load, kg
-	M_nominal 					= 5044 ,    -- kg
-	M_max 						= 6106 ,    -- kg
-	M_fuel_max 					= 1172 ,    -- 1412 * 0.83, -- kg
-	H_max 					 	= 15500,    -- 15000 for test H max for 11560 rpm. -Table 8 Manual Original 15100 m
-	average_fuel_consumption 	= 0.43,      -- Table 19 this is highly relative, was .63 test/ but good estimates are 36-40l/min = 28-31kg/min = 0.47-0.52kg/s -- 45l/min = 35kg/min = 0.583kg/s 2270 kg per hour @ cruse = 0.63 kg per second, 2250 kg h Nominal = 0.78 kgs, Max 2890 kgh =0.802 kgs table 19
-	CAS_min 					= 50,       -- This is Close Air Support Time on Station in Minutes, (for AI) LOITER TIME for aircraft_task(CAS), it should be 10-15 minutes.....
+	M_empty   = 3753 ,    -- with pilot and nose load, kg
+	M_nominal = 5044 ,    -- kg
+	M_max 	  = 6106 ,    -- kg
+	M_fuel_max = 1172 ,    -- 1412 * 0.83, -- kg
+	H_max 	  = 15500,    -- 15000 for test H max for 11560 rpm. -Table 8 Manual Original 15100 m
+	average_fuel_consumption = 0.43,      -- Table 19 this is highly relative, was .63 test/ but good estimates are 36-40l/min = 28-31kg/min = 0.47-0.52kg/s -- 45l/min = 35kg/min = 0.583kg/s 2270 kg per hour @ cruse = 0.63 kg per second, 2250 kg h Nominal = 0.78 kgs, Max 2890 kgh =0.802 kgs table 19
+	CAS_min   = 50,       -- This is Close Air Support Time on Station in Minutes, (for AI) LOITER TIME for aircraft_task(CAS), it should be 10-15 minutes.....
     -- M = 15600 lbs
-	V_opt 						= 367 / 3.6, -- velocity for L/D Max, Mach .3 at 0 m =367 TAS Kph. Setting V_opt to high and AI does not have enough lift to turn fighting,  Page 24 MiG Aero Manual. -- Mach .6 735 kph @ S.L. this also given as speed for L/D max fig 54 and note below, Max Climb is 710 table 5, Original Value is 850 m 0.7.   V cruse = 1.131 Vopt.                                                                                       
-	V_take_off 					= 76.8, 	-- Take off speed in m/s (for AI)  Figs, 25, and 30 275 KPH with 0 flaps and Weight - 5980 Original 63 mps
-	V_land 						= 83, 		-- Land speed in m/s (for AI) 300KPH
-	V_max_sea_level 			= 1076/3.6, --  Mission Editor Max Speed IRL = 1076  Mach 0.877 Set high to test AI Max speed at sea level in m/s (for AI)-irl
-	V_max_h 					= 956/3.6,  -- Max speed at max altitude in m/s in mission editor:  To test SFM  set to 1327  The DCS Editor Limits Aircraft V to GS Vmax sea level 
-	Vy_max 						= 50,      --  50 max  at 0; 20 at 10km MiG tech manual Mean 32 fig 110 To test SFM 500 Max climb speed in m/s (for AI)
-	Mach_max 					= 0.91, 	-- Set for testing Max speed in Mach (for AI) mission editor- .919 @ 11,000 Km table 5 + page 12 and fig 15 
-	Ny_min 						= -3, 		-- Min G (for AI) -3 Can be lowered, AI likes to use -g to accel with 0 drag, 
-	Ny_max 						= 8.0,  	-- Max G (for AI)
-	Ny_max_e 					= 12,       -- Ultimate G limit / structural G limit -- table 2 say 12g,
-	AOA_take_off 				= 0.122, 	-- AoA in take off radians (for AI) AOA for L/D  max
-	bank_angle_max 				= 90,	--  Max bank angle (for AI; probably for orbit) Old 85 -table 18 Bank angle for min turn time clean  77, For 8 g 82.81. Old 85 
+	V_opt 		= 367 / 3.6, -- velocity for L/D Max, Mach .3 at 0 m =367 TAS Kph. Setting V_opt to high and AI does not have enough lift to turn fighting,  Page 24 MiG Aero Manual. -- Mach .6 735 kph @ S.L. this also given as speed for L/D max fig 54 and note below, Max Climb is 710 table 5, Original Value is 850 m 0.7.   V cruse = 1.131 Vopt.                                                                                       
+	V_take_off 	= 76.8, 	-- Take off speed in m/s (for AI)  Figs, 25, and 30 275 KPH with 0 flaps and Weight - 5980 Original 63 mps
+	V_land 		= 83, 		-- Land speed in m/s (for AI) 300KPH
+	V_max_sea_level = 1076/3.6, --  Mission Editor Max Speed IRL = 1076  Mach 0.877 Set high to test AI Max speed at sea level in m/s (for AI)-irl
+	V_max_h 	= 956/3.6,  -- Max speed at max altitude in m/s in mission editor:  To test SFM  set to 1327  The DCS Editor Limits Aircraft V to GS Vmax sea level 
+	Vy_max 		= 50,      --  50 max  at 0; 20 at 10km MiG tech manual Mean 32 fig 110 To test SFM 500 Max climb speed in m/s (for AI)
+	Mach_max 	= 0.91, 	-- Set for testing Max speed in Mach (for AI) mission editor- .919 @ 11,000 Km table 5 + page 12 and fig 15 
+	Ny_min 		= -3, 		-- Min G (for AI) -3 Can be lowered, AI likes to use -g to accel with 0 drag, 
+	Ny_max 		= 8.0,  	-- Max G (for AI)
+	Ny_max_e 	= 12,       -- Ultimate G limit / structural G limit -- table 2 say 12g,
+	AOA_take_off 	= 0.122, 	-- AoA in take off radians (for AI) AOA for L/D  max
+	bank_angle_max 	= 90,	--  Max bank angle (for AI; probably for orbit) Old 85 -table 18 Bank angle for min turn time clean  77, For 8 g 82.81. Old 85 
 
 
 	has_afteburner 				= false, 	-- AFB yes/no
 	has_speedbrake 				= true, 	-- Speedbrake yes/no
 	has_differential_stabilizer = false,    -- Differential stabilizers yes/no
 	tand_gear_max 				= 1.192, 	-- tangent on maximum yaw angle of front wheel, 50 degrees
-	wing_area 					= 20.6, 	-- wing area in m2 		
-	wing_span 					= 10.08 , 	-- wing span in m			
-	wing_type 					= 0,		-- Fixed wing				
+	wing_area 				= 20.6, 	-- wing area in m2 		
+	wing_span 				= 10.08 , 	-- wing span in m			
+	wing_type 				= 0,		-- Fixed wing				
 	thrust_sum_max 				= 2479,     -- max thurst kgf of engine changed to reflect, 21161 newtons. Reduced to match installed power see Figure 80 Page 31 and Figs 82 and 84	
 	thrust_sum_ab 				= 2479, 	-- max thurst Afterburner in kgf Old 26.0kN -- reduced to match installed power	
-	length 						= 10.11, 	-- full lenght in m		
-	height 						= 3.7, 		-- height in m				
+	length 					= 10.11, 	-- full lenght in m		
+	height 					= 3.7, 		-- height in m				
 	flaps_maneuver 				= 0, 		-- Max flaps in take-off and maneuver (0.5 = 1st stage; 1.0 = 2nd stage) (for AI) when 0, AI will land full flaps-- default = 0
     flaps_transmission          = "Hydraulic",
     undercarriage_transmission  = "Hydraulic",
@@ -305,13 +305,13 @@ local base_MiG_15bis =  {
 	IR_emission_coeff_ab 		= 0.26, 	-- With afterburner
 	wing_tip_pos 				= {-2.248,-0.212,4.9}, -- wingtip coords for visual effects
 	
-	nose_gear_pos 								= { 2.782, -1.416,	0},   -- nosegear coord 
+	nose_gear_pos 					= { 2.782, -1.416,	0},   -- nosegear coord 
 	nose_gear_amortizer_direct_stroke   		=  0,  -- down from nose_gear_pos !!!
 	nose_gear_amortizer_reversal_stroke  		= -0.227,  -- up 
 	nose_gear_amortizer_normal_weight_stroke 	= -0.06,   -- up 
 	nose_gear_wheel_diameter 					=  0.478, -- in m
 	
-	main_gear_pos 						 	 = {-0.4  ,-1.249 , 1.905}, -- main gear coords (base = 3810)
+	main_gear_pos 					= {-0.4  ,-1.249 , 1.905}, -- main gear coords (base = 3810)
 	main_gear_amortizer_direct_stroke	 	 =   0, --  down from main_gear_pos !!!
 	main_gear_amortizer_reversal_stroke  	 = 	-0.192, --  up 
 	main_gear_amortizer_normal_weight_stroke =  -0.06,-- down from main_gear_pos
@@ -394,13 +394,13 @@ local base_MiG_15bis =  {
 				supply_position		 = {2.115, -0.45, 0.0},
 --				ejector_pos			 = {0.0, 0.0, 0.0},					--{-1.67, -0.07, -0.07}}),
 				ejector_pos_connector = "ejector_1",
-                mixes                 = {{1,2,1,1,1,2,1}}, -- added belt 70% HEI 30% APT per MiG-17 tech manual  1 =HEI T, 2= API-T 
+                mixes                 = {{1,2,1,1,1,2,1}}, -- added belt 70% HEI 30% APT per MiG-17 tech manual, Order of projectiles fired,  1 =HEI T, 2= API-T 
 				}),
 			nr23({
 				muzzle_pos_connector = "Gun_point_3",
 				effect_arg_number	 = 433,
-                rates                = {861}, --  lowered mean + 1 so both 23mm can be fired at same time. When rates of guns are multi guns are = on F-86 They dont functon.
-				mixes				 = {{2,1,1,2,1,1,1}}, --added belt 70% HEI 30% APT per MiG-17 tech manual
+                		rates  = {861}, --  lowered mean + 1 so both 23mm can be fired at same time. When rates of guns are multi guns are = on F-86 They dont functon.
+				mixes	= {{2,1,1,2,1,1,1}}, -- Order of projectiles fired, added belt 70% HEI 30% APT per MiG-17 tech manual
 				azimuth_initial		 = 0,
 				elevation_initial	 = 0,
 				supply_position		 = {2.436, -0.4, 0.0},
@@ -410,8 +410,8 @@ local base_MiG_15bis =  {
 			nr23({
 				muzzle_pos_connector = "Gun_point_007", --NR 23
 				effect_arg_number	 = 432,
-				mixes				 = {{1,1,1,2,1,1,2}}, --added belt 70% HEI 30% APT per MiG-17 tech manual
-                rates                = {859}, -- Lowered to mean -1 so both can fire at same time. called again so both cans be fired twice.
+				mixes	= {{1,1,1,2,1,1,2}}, --added belt 70% HEI 30% APT per MiG-17 tech manual
+                		rates  = {859}, -- Lowered to mean -1 so both can fire at same time. called again so both cans be fired twice.
 				azimuth_initial		 = 0,
 				elevation_initial	 = 0,
 				supply_position		 = {1.866, -0.47, 0.0},
