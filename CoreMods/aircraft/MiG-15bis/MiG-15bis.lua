@@ -297,7 +297,7 @@ local base_MiG_15bis =  {
 	length 					= 10.11, 	-- full lenght in m		
 	height 					= 3.7, 		-- height in m				
 	flaps_maneuver 				= 0, 		-- Max flaps in take-off and maneuver (0.5 = 1st stage; 1.0 = 2nd stage) (for AI) when 0, AI will land full flaps-- default = 0
-    	flaps_transmission           		= "Hydraulic",
+    flaps_transmission           		= "Hydraulic",
    	undercarriage_transmission  		= "Hydraulic",
 	range 					= 1240, 	-- Max range in km (for AI)
 	RCS 					= 2, 		-- Radar Cross Section m2
@@ -399,7 +399,7 @@ local base_MiG_15bis =  {
 			nr23({
 				muzzle_pos_connector = "Gun_point_3",
 				effect_arg_number	 = 433,
-                		rates  			 = {861}, --  lowered mean + 1 so both 23mm can be fired at same time. When rates of guns are multi guns are = on F-86 They dont functon.
+                rates  			 = {861}, --  lowered mean + 1 so both 23mm can be fired at same time. When rates of guns are multi guns are = on F-86 They dont functon.
 				mixes			 = {{2,1,1,2,1,1,1}}, -- Order of projectiles fired, added belt 70% HEI 30% APT per MiG-17 tech manual
 				azimuth_initial		 = 0,
 				elevation_initial	 = 0,
@@ -411,7 +411,7 @@ local base_MiG_15bis =  {
 				muzzle_pos_connector = "Gun_point_007", --NR 23
 				effect_arg_number	 = 432,
 				mixes			 = {{1,1,1,2,1,1,2}}, --added belt 70% HEI 30% APT per MiG-17 tech manual
-                		rates  			 = {859}, -- Lowered to mean -1 so both can fire at same time. called again so both cans be fired twice.
+                rates  			 = {859}, -- Lowered to mean -1 so both can fire at same time. called again so both cans be fired twice.
 				azimuth_initial		 = 0,
 				elevation_initial	 = 0,
 				supply_position		 = {1.866, -0.47, 0.0},
@@ -468,7 +468,7 @@ local base_MiG_15bis =  {
 			cx_brk	=	0.026, -- coefficient, drag, air brakes 
 			table_data = 
 			{	--M	Cx0*	 	Cya*		B2		 B4	 	Omxmax		Aldop*	Cymax*
-                		{ 0.0,	0.0195	,	0.058	,	0.076	,	0.022 	,	0.186	,	10   ,  1.100},
+                { 0.0,	0.0195	,	0.058	,	0.076	,	0.022 	,	0.186	,	10   ,  1.100},
 				{ 0.1,	0.0183	,	0.066	,	0.076	,	0.0165 	,	0.372	,	15.5 ,	1.100},
 				{ 0.2,	0.0173	,	0.070	,	0.0739	,	0.014	,	0.600	,	16.5 ,	1.130},
 				{ 0.3,	0.0165	,	0.074	,	0.075	,	0.014   ,	0.850	,	15.3 ,	1.110},
@@ -478,10 +478,10 @@ local base_MiG_15bis =  {
 				{ 0.7,	0.0160	,	0.088	,	0.074	,	0.025 	,	1.460	,	10.2 ,	0.872},
 				{ 0.8,	0.0168	,	0.096	,	0.075 	,	0.017 	,	1.250	,	8.3  ,	0.770},
 				{ 0.86,	0.0181	,	0.10	,	0.075	,	0.15	,	1.060	,	6.3  ,	0.600},
-                		{ 0.88,	0.0197	,	0.099	,	0.065	,	0.29	,	0.952	,	7.2  ,	0.684},
+                { 0.88,	0.0197	,	0.099	,	0.065	,	0.29	,	0.952	,	7.2  ,	0.684},
 				{ 0.9,	0.0232	,	0.098	,	0.088	,	0.36 	,	0.870   ,	7    ,	0.658},
 				{ 0.92,	0.0300	,	0.094	,	0.095	,	0.45 	,	0.761   ,	7    ,	0.629},
-               			{ 0.94,	0.0402	,	0.090	,	0.099	,	0.689	,	0.636	,	7    ,	0.600},
+               	{ 0.94,	0.0402	,	0.090	,	0.099	,	0.689	,	0.636	,	7    ,	0.600},
 				{ 1.0,  0.0599	,	0.088	,	0.16 	,	0.58   	,	0.380	,	6    ,	0.500},
 				{ 1.04,	0.0632	,	0.115	,	0.24 	,	0.89    ,	0.20	,  	4.4  ,	0.477},
 				{ 1.2,	0.0680	,	0.115	,	0.26 	,	8   	,	0.10 	,	2.2  ,	0.239},
@@ -496,7 +496,7 @@ local base_MiG_15bis =  {
 			-- Cymax - Coefficient, lift, SFM based on FIG 185 maximum possible (ignores other calculations if current Cy > Cymax), If Cy flap + Cy > Cymax, then Cy = Cymax.  
             -- Changes to SFM 
             -- Drag Polars tuned to match Figs 55 and 56.
-	    -- Cy Max changes Based on Cy Fig 53 and flight test data Fig 183 to 185.
+            -- Cy Max changes Based on Cy Fig 53 and flight test data Fig 183 to 185.
             -- Cy changes produced the same load factor limits at the same velocity as test data. Ref Fig 50, Fig 183, 184
             -- Aldop Set to 98% AOA Max. Note This higher than the IRL buffet limit of ~ 75 AOA max. AI will not pull AOA greater than Aldop. To get realistic aircraft performance out of AI Aldop has to be higher than Real buffet on set angle.
             -- Performance Limiting Factors of AI SFM are AI Level Cy Max, Aldop, and g_suit, Vopt    			 
@@ -520,22 +520,22 @@ local base_MiG_15bis =  {
 			dpdh_m	=	1325, --  altitude coefficient for max thrust; Tuned to match velocity at 1000m (1072 kph) 5000m (1044 kph), 10,0000m (987 kph) and 15,000m (950 Kph). table 5 and fig 80 
 			dpdh_f	=	1325, --  altitude coefficient for AB thrust 
 			table_data = 
-			{ --    Mach	, Pmax: Thurst max Newtons , MaxPfor AB Thurst Max 	
+			{ --   Mach	, Pmax: Thurst max Newtons , MaxPfor AB Thurst Max 	
 				{ 0.0	,  	24085   ,	24085	},
-                		{ 0.1   ,   	23497   ,  	23497   },
+                { 0.1   ,   23497   ,  	23497   },
 				{ 0.2	,	22917	,	22917	},
 				{ 0.3	,	22363	,	22363	},
-                		{ 0.4	,	21817	,	21817	},
-                		{ 0.5	,	21492	,	21492	},
+                { 0.4	,	21817	,	21817	},
+                { 0.5	,	21492	,	21492	},
 				{ 0.6	,	21296   ,	21296	},
-                		{ 0.7	,	21366	,	21366	},
+                { 0.7	,	21366	,	21366	},
 				{ 0.8	,	21808	,	21808	},
 				{ 0.86	,	22301	,	22301	},
 				{ 0.88	,	22510	,	22510   },
 				{ 0.9	,	22743	,	22743	},
 				{ 0.92  ,	23001	,	23001	},
-                		{ 0.94  ,   	23285   ,   	23285   },
-                		{ 1.00	,	24311	,	24311	},
+                { 0.94  ,   23285   ,   23285   },
+                { 1.00	,	24311	,	24311	},
 				{ 1.04	,	25150	,	25150	},
 				{ 1.20  ,	30000	,	30000	},
 				
