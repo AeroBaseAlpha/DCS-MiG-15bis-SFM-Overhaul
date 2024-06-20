@@ -487,9 +487,9 @@ local base_MiG_15bis =  {
 				{ 1.2,	0.0680	,	0.115	,	0.26 	,	8   	,	0.10 	,	2.2  ,	0.239},
 			}, -- end of table_data
 			-- M - Mach number
-			-- Cx0 - Coefficient, drag, profile, of the airplane
+			-- Cx0 - Zero lift Drag Coefficient, profile drag, of the airplane. Cx = Cx_0 + Cy^2*B2 +Cy^4*B4
 			-- Cya - Lift Per AOA degs. Cya = (Cy / AOA) + Cy0 . Cya set to match fig 60. AOA = ((1/Cya)*Cy+((Cy0*-1)/Cya))
-			-- B2 - Polar 2nd power coeff -- Drag polar Set to match chart 55 and 56, added entry for Mach .88 and Mach .92 
+			-- B2 - Lift induced drag Polar 2nd power coeff lift induced, B2, of DCS drag equation.  -- Drag polar Set to match chart 55 and 56, added entry for Mach .88 and Mach .92 
 			-- B4 - Polar 4th power coeff 
 			-- Omxmax - roll rate, rad/s- Chart 40 
 			-- Aldop - Alfadop, SET to AOA for CL Max based on Aero Data. This also seems to limit AI AOA. The player's FM this is = AOA when aircraft buffet / screen shake begins. Fig 185 has buffet onset for MIG-15 Bis. Yo Yo says this is AOA for Nonlinear effects, This also seems to limit AI AOA.
