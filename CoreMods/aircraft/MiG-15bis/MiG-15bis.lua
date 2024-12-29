@@ -52,8 +52,8 @@ declare_weapon({category = CAT_SHELLS,name =   "N37_37x155_API_T",
   payloadMaterial = "Thermite", -- trial of API params  in WW2 Weapon file. 
   v0    	= 675,
   Dv0   	= 0.0059, -- mean error is 4 mps Dv0 = 4 / 675 mv
-  Da0     	 = 0.00067,  -- Original Value Da0 = 0.0017, da0 is the dispersion probable error = 0.4 meters at 600 meters Da0 = 0.4 / 600 Soviet Aircraft Projectile Manual page 127     
-  Da1     	 = 0.0,
+  Da0     	= 0.00067,  -- Original Value Da0 = 0.0017, da0 is the dispersion probable error = 0.4 meters at 600 meters Da0 = 0.4 / 600 Soviet Aircraft Projectile Manual page 127     
+  Da1     	= 0.0,
   mass      	 = 0.753, -- Changed to Match Soviet Data Page 46 Table 6
   round_mass 	 = 1.294+0.115,	-- round + link
   cartridge_mass = 0.0,	-- 0.413+0.115, cartridges are ejected
@@ -240,7 +240,7 @@ local base_MiG_15bis =  {
 	DisplayName			= rewrite_settings.DisplayName,
 	Picture 			= "MiG-15bis.png",
 	Rate 				= 20, -- RewardPoint in Multiplayer
-	Shape 				= "MiG_15bis",
+	Shape 				= rewrite_settings.Shape	or "MiG_15bis",
 	livery_entry		= "MiG-15bis",
 	
 	country_of_origin = "SUN", --USSR
@@ -248,12 +248,12 @@ local base_MiG_15bis =  {
 	shape_table_data 	= 
 	{
 		{
-			file  	 = 'MiG_15bis';
+			file  	 = rewrite_settings.Shape	or 'MiG_15bis';
 			life  	 = 15; -- прочность объекта (методом lifebar*) -- The strength of the object (ie. lifebar *)
 			vis   	 = 3; -- множитель видимости (для маленьких объектов лучше ставить поменьше). Visibility factor (For a small objects is better to put lower nr).
 			desrt    = 'Fighter-2-crush',-- Name of destroyed object file name
 			fire  	 = { 300, 4}; -- Fire on the ground after destoyed: 300sec 4m
-			username = 'MiG-15bis';
+			username = rewrite_settings.Name	or 'MiG-15bis';
 			index    =  WSTYPE_PLACEHOLDER;
 			classname = "lLandPlane";
 			positioning = "BYNORMAL";
@@ -271,14 +271,14 @@ local base_MiG_15bis =  {
 	average_fuel_consumption = 0.43,      -- Table 19 this is highly relative, was .63 test/ but good estimates are 36-40l/min = 28-31kg/min = 0.47-0.52kg/s -- 45l/min = 35kg/min = 0.583kg/s 2270 kg per hour @ cruse = 0.63 kg per second, 2250 kg h Nominal = 0.78 kgs, Max 2890 kgh =0.802 kgs table 19
 	CAS_min   = 50,       -- This is Close Air Support Time on Station in Minutes, (for AI) LOITER TIME for aircraft_task(CAS), it should be 10-15 minutes.....
     -- M = 15600 lbs
-	V_opt 		= 367 / 3.6, -- velocity for L/D Max, Mach .3 at 0 m =367 TAS Kph. Setting V_opt to high and AI does not have enough lift to turn fighting,  Page 24 MiG Aero Manual. -- Mach .6 735 kph @ S.L. this also given as speed for L/D max fig 54 and note below, Max Climb is 710 table 5, Original Value is 850 m 0.7.   V cruse = 1.131 Vopt.                                                                                       
+	V_opt 		= 612 / 3.6, -- Set to ~mach 5, Corner V velocity for L/D Max, Mach .3 at 0 m =367 TAS Kph. Setting V_opt to high and AI does not have enough lift to turn fighting,  Page 24 MiG Aero Manual. -- Mach .6 735 kph @ S.L. this also given as speed for L/D max fig 54 and note below, Max Climb is 710 table 5, Original Value is 850 m 0.7.   V cruse = 1.131 Vopt.                                                                                       
 	V_take_off 	= 76.8, 	-- Take off speed in m/s (for AI)  Figs, 25, and 30 275 KPH with 0 flaps and Weight - 5980 Original 63 mps
 	V_land 		= 83, 		-- Land speed in m/s (for AI) 300KPH
 	V_max_sea_level = 1076/3.6, --  Mission Editor Max Speed IRL = 1076  Mach 0.877 Set high to test AI Max speed at sea level in m/s (for AI)-irl
 	V_max_h 	= 956/3.6,  -- Max speed at max altitude in m/s in mission editor:  To test SFM  set to 1327  The DCS Editor Limits Aircraft V to GS Vmax sea level 
 	Vy_max 		= 50,      --  50 max  at 0; 20 at 10km MiG tech manual Mean 32 fig 110 To test SFM 500 Max climb speed in m/s (for AI)
 	Mach_max 	= 0.91, 	-- Set for testing Max speed in Mach (for AI) mission editor- .919 @ 11,000 Km table 5 + page 12 and fig 15 
-	Ny_min 		= -3, 		-- Min G (for AI) -3 Can be lowered, AI likes to use -g to accel with 0 drag, 
+	Ny_min 		= -.5, 		-- Min G (for AI) -3 Can be lowered, AI likes to use -g to accel with 0 drag, 
 	Ny_max 		= 8.0,  	-- Max G (for AI)
 	Ny_max_e 	= 12,       -- Ultimate G limit / structural G limit -- table 2 say 12g,
 	AOA_take_off 	= 0.122, 	-- AoA in take off radians (for AI) AOA for L/D  max
@@ -394,7 +394,7 @@ local base_MiG_15bis =  {
 				supply_position		 = {2.115, -0.45, 0.0},
 --				ejector_pos			 = {0.0, 0.0, 0.0},					--{-1.67, -0.07, -0.07}}),
 				ejector_pos_connector = "ejector_1",
-                		mixes                 = {{1,2,1,1,1,2,1}}, -- added belt 70% HEI 30% APT per MiG-17 tech manual, Order of projectiles fired,  1 =HEI T, 2= API-T 
+                mixes                 = {{1,2,1,1,1,2,1}}, -- added belt 70% HEI 30% APT per MiG-17 tech manual, Order of projectiles fired,  1 =HEI T, 2= API-T 
 				}),
 			nr23({
 				muzzle_pos_connector = "Gun_point_3",
