@@ -20,9 +20,9 @@ declare_weapon({category = CAT_SHELLS,name =   "N37_37x155_HEI_T",
   model_name     = "tracer_bullet_crimson",
   projectile      = "HE", -- added as this was not defined before
   v0   		  = 690, -- Muzzle Velocity of Projectile.
-  Dv0             = 0.0057, -- This is delta Velocity 0, IRL Mean Dv0 is is 4 mps, Table 15 4/ 690 = 0.00579 --page 120 Soviet Aircraft Projectile Manual
-  Da0             = 0.00083, -- Original Value Da0 = 0.0017,  Soviet Aircraft Projectile Manual page 127  Probable Error is .5 meters at 600 for the HEI in both the x and y axis. Therefore the Prob  radius  of dispersion is = .5/600 = Da0 = 0.00083  ,da0 * 8 = 100% dispersion diameter, da0 is the probable error = standard deviation of dispersion (sigma) * 0.6745   
-  Da1             = 0.0,
+  Dv0            = 0.0057,-- median variation of Muzzle Velocity of relative velocity spread, IRL Mean Dv0 is is 4 mps, Table 15 4/ 690 = 0.00579 page 120 Soviet Aircraft Projectile Manual, noted in other lua file as  [v0-V0*Dv0, v0+v0*Dv0] contains 50% of velocities median of relative velocity spread,
+  Da0            = 0.00083, -- DCS Dispersion Parameter Original Value Da0 = 0.0017,  Soviet Aircraft Projectile Manual page 127  Probable Error is .5 meters at 600 for the HEI in both the x and y axis. Therefore the Prob  radius  of dispersion is = .5/600 = Da0 = 0.00083  , da0 * 8 = 100% dispersion diameter,   
+  Da1            = 0.0,
   mass           = 0.735, -- Changed to Match Soviet Data Page 46 Table 6
   round_mass 	 = 1.250+0.115,		-- round + link
   cartridge_mass = 0.0,				-- 0.413+0.115, cartridges are ejected
@@ -57,6 +57,7 @@ declare_weapon({category = CAT_SHELLS,name =   "N37_37x155_API_T",
   mass      	 = 0.753, -- Changed to Match Soviet Data Page 46 Table 6
   round_mass 	 = 1.294+0.115,	-- round + link
   cartridge_mass = 0.0,	-- 0.413+0.115, cartridges are ejected
+                         
   life_time      = 8.0, -- increased to 8 
   caliber        = 37.0,
   s              = 0.0,
@@ -646,10 +647,21 @@ local base_MiG_15bis =  {
 	
 	lights_data = {
 		typename =	"collection",
+	lights_data = {
+		typename =	"collection",
 		lights 	 = 
 		{
+			[WOLALIGHT_TAXI_LIGHTS]	= {
+				typename	= 	"collection",
+				lights		= {[1] = -- nose
+					{
+						typename	=	"argumentlight",
+						argument	=	51,
+					}, -- end of [1]
+				},
+			},--must be collection
 			-- WOLALIGHT_SPOTS -- фары
-			[2] =
+			[WOLALIGHT_SPOTS] =
 			{
 				lights = 
 				{
@@ -662,7 +674,7 @@ local base_MiG_15bis =  {
 				typename	=	"collection",
 			}, -- end of [2]
 			-- WOLALIGHT_NAVLIGHTS -- навигационные
-			[3] =
+			[WOLALIGHT_NAVLIGHTS] =
 			{
 				lights =
 				{
