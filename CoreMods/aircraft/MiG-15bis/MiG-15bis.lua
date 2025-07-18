@@ -52,8 +52,8 @@ declare_weapon({category = CAT_SHELLS,name =   "N37_37x155_API_T",
   payloadMaterial = "Thermite", -- trial of API params  in WW2 Weapon file. 
   v0    	= 675,
   Dv0   	= 0.0059, -- mean error is 4 mps Dv0 = 4 / 675 mv
-  Da0     	 = 0.00067,  -- Original Value Da0 = 0.0017, da0 is the dispersion probable error = 0.4 meters at 600 meters Da0 = 0.4 / 600 Soviet Aircraft Projectile Manual page 127     
-  Da1     	 = 0.0,
+  Da0     	= 0.00067,  -- Original Value Da0 = 0.0017, da0 is the dispersion probable error = 0.4 meters at 600 meters Da0 = 0.4 / 600 Soviet Aircraft Projectile Manual page 127     
+  Da1     	= 0.0,
   mass      	 = 0.753, -- Changed to Match Soviet Data Page 46 Table 6
   round_mass 	 = 1.294+0.115,	-- round + link
   cartridge_mass = 0.0,	-- 0.413+0.115, cartridges are ejected
@@ -241,7 +241,7 @@ local base_MiG_15bis =  {
 	DisplayName			= rewrite_settings.DisplayName,
 	Picture 			= "MiG-15bis.png",
 	Rate 				= 20, -- RewardPoint in Multiplayer
-	Shape 				= "MiG_15bis",
+	Shape 				= rewrite_settings.Shape	or "MiG_15bis",
 	livery_entry		= "MiG-15bis",
 	
 	country_of_origin = "SUN", --USSR
@@ -249,12 +249,12 @@ local base_MiG_15bis =  {
 	shape_table_data 	= 
 	{
 		{
-			file  	 = 'MiG_15bis';
+			file  	 = rewrite_settings.Shape	or 'MiG_15bis';
 			life  	 = 15; -- прочность объекта (методом lifebar*) -- The strength of the object (ie. lifebar *)
 			vis   	 = 3; -- множитель видимости (для маленьких объектов лучше ставить поменьше). Visibility factor (For a small objects is better to put lower nr).
 			desrt    = 'Fighter-2-crush',-- Name of destroyed object file name
 			fire  	 = { 300, 4}; -- Fire on the ground after destoyed: 300sec 4m
-			username = 'MiG-15bis';
+			username = rewrite_settings.Name	or 'MiG-15bis';
 			index    =  WSTYPE_PLACEHOLDER;
 			classname = "lLandPlane";
 			positioning = "BYNORMAL";
@@ -272,14 +272,14 @@ local base_MiG_15bis =  {
 	average_fuel_consumption = 0.43,      -- Table 19 this is highly relative, was .63 test/ but good estimates are 36-40l/min = 28-31kg/min = 0.47-0.52kg/s -- 45l/min = 35kg/min = 0.583kg/s 2270 kg per hour @ cruse = 0.63 kg per second, 2250 kg h Nominal = 0.78 kgs, Max 2890 kgh =0.802 kgs table 19
 	CAS_min   = 50,       -- This is Close Air Support Time on Station in Minutes, (for AI) LOITER TIME for aircraft_task(CAS), it should be 10-15 minutes.....
     -- M = 15600 lbs
-	V_opt 		= 367 / 3.6, -- velocity for L/D Max, Mach .3 at 0 m =367 TAS Kph. Setting V_opt to high and AI does not have enough lift to turn fighting,  Page 24 MiG Aero Manual. -- Mach .6 735 kph @ S.L. this also given as speed for L/D max fig 54 and note below, Max Climb is 710 table 5, Original Value is 850 m 0.7.   V cruse = 1.131 Vopt.                                                                                       
+	V_opt 		= 612 / 3.6, -- Set to ~mach 5, Corner V velocity for L/D Max, Mach .3 at 0 m =367 TAS Kph. Setting V_opt to high and AI does not have enough lift to turn fighting,  Page 24 MiG Aero Manual. -- Mach .6 735 kph @ S.L. this also given as speed for L/D max fig 54 and note below, Max Climb is 710 table 5, Original Value is 850 m 0.7.   V cruse = 1.131 Vopt.                                                                                       
 	V_take_off 	= 76.8, 	-- Take off speed in m/s (for AI)  Figs, 25, and 30 275 KPH with 0 flaps and Weight - 5980 Original 63 mps
 	V_land 		= 83, 		-- Land speed in m/s (for AI) 300KPH
 	V_max_sea_level = 1076/3.6, --  Mission Editor Max Speed IRL = 1076  Mach 0.877 Set high to test AI Max speed at sea level in m/s (for AI)-irl
 	V_max_h 	= 956/3.6,  -- Max speed at max altitude in m/s in mission editor:  To test SFM  set to 1327  The DCS Editor Limits Aircraft V to GS Vmax sea level 
 	Vy_max 		= 50,      --  50 max  at 0; 20 at 10km MiG tech manual Mean 32 fig 110 To test SFM 500 Max climb speed in m/s (for AI)
 	Mach_max 	= 0.91, 	-- Set for testing Max speed in Mach (for AI) mission editor- .919 @ 11,000 Km table 5 + page 12 and fig 15 
-	Ny_min 		= -3, 		-- Min G (for AI) -3 Can be lowered, AI likes to use -g to accel with 0 drag, 
+	Ny_min 		= -.5, 		-- Min G (for AI) -3 Can be lowered, AI likes to use -g to accel with 0 drag, 
 	Ny_max 		= 8.0,  	-- Max G (for AI)
 	Ny_max_e 	= 12,       -- Ultimate G limit / structural G limit -- table 2 say 12g,
 	AOA_take_off 	= 0.122, 	-- AoA in take off radians (for AI) AOA for L/D  max
@@ -298,7 +298,7 @@ local base_MiG_15bis =  {
 	length 					= 10.11, 	-- full lenght in m		
 	height 					= 3.7, 		-- height in m				
 	flaps_maneuver 				= 0, 		-- Max flaps in take-off and maneuver (0.5 = 1st stage; 1.0 = 2nd stage) (for AI) when 0, AI will land full flaps-- default = 0
-    	flaps_transmission           		= "Hydraulic",
+    flaps_transmission           		= "Hydraulic",
    	undercarriage_transmission  		= "Hydraulic",
 	range 					= 1240, 	-- Max range in km (for AI)
 	RCS 					= 2, 		-- Radar Cross Section m2
@@ -395,12 +395,12 @@ local base_MiG_15bis =  {
 				supply_position		 = {2.115, -0.45, 0.0},
 --				ejector_pos			 = {0.0, 0.0, 0.0},					--{-1.67, -0.07, -0.07}}),
 				ejector_pos_connector = "ejector_1",
-                		mixes                 = {{1,2,1,1,1,2,1}}, -- added belt 70% HEI 30% APT per MiG-17 tech manual, Order of projectiles fired,  1 =HEI T, 2= API-T 
+                mixes                 = {{1,2,1,1,1,2,1}}, -- added belt 70% HEI 30% APT per MiG-17 tech manual, Order of projectiles fired,  1 =HEI T, 2= API-T 
 				}),
 			nr23({
 				muzzle_pos_connector = "Gun_point_3",
 				effect_arg_number	 = 433,
-                		rates  			 = {861}, --  lowered mean + 1 so both 23mm can be fired at same time. When rates of guns are multi guns are = on F-86 They dont functon.
+                rates  			 = {861}, --  lowered mean + 1 so both 23mm can be fired at same time. When rates of guns are multi guns are = on F-86 They dont functon.
 				mixes			 = {{2,1,1,2,1,1,1}}, -- Order of projectiles fired, added belt 70% HEI 30% APT per MiG-17 tech manual
 				azimuth_initial		 = 0,
 				elevation_initial	 = 0,
@@ -412,7 +412,7 @@ local base_MiG_15bis =  {
 				muzzle_pos_connector = "Gun_point_007", --NR 23
 				effect_arg_number	 = 432,
 				mixes			 = {{1,1,1,2,1,1,2}}, --added belt 70% HEI 30% APT per MiG-17 tech manual
-                		rates  			 = {859}, -- Lowered to mean -1 so both can fire at same time. called again so both cans be fired twice.
+                rates  			 = {859}, -- Lowered to mean -1 so both can fire at same time. called again so both cans be fired twice.
 				azimuth_initial		 = 0,
 				elevation_initial	 = 0,
 				supply_position		 = {1.866, -0.47, 0.0},
@@ -469,7 +469,7 @@ local base_MiG_15bis =  {
 			cx_brk	=	0.026, -- coefficient, drag, air brakes 
 			table_data = 
 			{	--M	Cx0*	 	Cya*		B2		 B4	 	Omxmax		Aldop*	Cymax*
-                		{ 0.0,	0.0195	,	0.058	,	0.076	,	0.022 	,	0.186	,	10   ,  1.100},
+                { 0.0,	0.0195	,	0.058	,	0.076	,	0.022 	,	0.186	,	10   ,  1.100},
 				{ 0.1,	0.0183	,	0.066	,	0.076	,	0.0165 	,	0.372	,	15.5 ,	1.100},
 				{ 0.2,	0.0173	,	0.070	,	0.0739	,	0.014	,	0.600	,	16.5 ,	1.130},
 				{ 0.3,	0.0165	,	0.074	,	0.075	,	0.014   ,	0.850	,	15.3 ,	1.110},
@@ -479,10 +479,10 @@ local base_MiG_15bis =  {
 				{ 0.7,	0.0160	,	0.088	,	0.074	,	0.025 	,	1.460	,	10.2 ,	0.872},
 				{ 0.8,	0.0168	,	0.096	,	0.075 	,	0.017 	,	1.250	,	8.3  ,	0.770},
 				{ 0.86,	0.0181	,	0.10	,	0.075	,	0.15	,	1.060	,	6.3  ,	0.600},
-                		{ 0.88,	0.0197	,	0.099	,	0.065	,	0.29	,	0.952	,	7.2  ,	0.684},
+                { 0.88,	0.0197	,	0.099	,	0.065	,	0.29	,	0.952	,	7.2  ,	0.684},
 				{ 0.9,	0.0232	,	0.098	,	0.088	,	0.36 	,	0.870   ,	7    ,	0.658},
 				{ 0.92,	0.0300	,	0.094	,	0.095	,	0.45 	,	0.761   ,	7    ,	0.629},
-               			{ 0.94,	0.0402	,	0.090	,	0.099	,	0.689	,	0.636	,	7    ,	0.600},
+               	{ 0.94,	0.0402	,	0.090	,	0.099	,	0.689	,	0.636	,	7    ,	0.600},
 				{ 1.0,  0.0599	,	0.088	,	0.16 	,	0.58   	,	0.380	,	6    ,	0.500},
 				{ 1.04,	0.0632	,	0.115	,	0.24 	,	0.89    ,	0.20	,  	4.4  ,	0.477},
 				{ 1.2,	0.0680	,	0.115	,	0.26 	,	8   	,	0.10 	,	2.2  ,	0.239},
@@ -497,7 +497,7 @@ local base_MiG_15bis =  {
 			-- Cymax - Coefficient, lift, SFM based on FIG 185 maximum possible (ignores other calculations if current Cy > Cymax), If Cy flap + Cy > Cymax, then Cy = Cymax.  
             -- Changes to SFM 
             -- Drag Polars tuned to match Figs 55 and 56.
-	    -- Cy Max changes Based on Cy Fig 53 and flight test data Fig 183 to 185.
+            -- Cy Max changes Based on Cy Fig 53 and flight test data Fig 183 to 185.
             -- Cy changes produced the same load factor limits at the same velocity as test data. Ref Fig 50, Fig 183, 184
             -- Aldop Set to 98% AOA Max. Note This higher than the IRL buffet limit of ~ 75 AOA max. AI will not pull AOA greater than Aldop. To get realistic aircraft performance out of AI Aldop has to be higher than Real buffet on set angle.
             -- Performance Limiting Factors of AI SFM are AI Level Cy Max, Aldop, and g_suit, Vopt    			 
@@ -521,22 +521,22 @@ local base_MiG_15bis =  {
 			dpdh_m	=	1325, --  altitude coefficient for max thrust; Tuned to match velocity at 1000m (1072 kph) 5000m (1044 kph), 10,0000m (987 kph) and 15,000m (950 Kph). table 5 and fig 80 
 			dpdh_f	=	1325, --  altitude coefficient for AB thrust 
 			table_data = 
-			{ --    Mach	, Pmax: Thurst max Newtons , MaxPfor AB Thurst Max 	
+			{ --   Mach	, Pmax: Thurst max Newtons , MaxPfor AB Thurst Max 	
 				{ 0.0	,  	24085   ,	24085	},
-                		{ 0.1   ,   	23497   ,  	23497   },
+                { 0.1   ,   23497   ,  	23497   },
 				{ 0.2	,	22917	,	22917	},
 				{ 0.3	,	22363	,	22363	},
-                		{ 0.4	,	21817	,	21817	},
-                		{ 0.5	,	21492	,	21492	},
+                { 0.4	,	21817	,	21817	},
+                { 0.5	,	21492	,	21492	},
 				{ 0.6	,	21296   ,	21296	},
-                		{ 0.7	,	21366	,	21366	},
+                { 0.7	,	21366	,	21366	},
 				{ 0.8	,	21808	,	21808	},
 				{ 0.86	,	22301	,	22301	},
 				{ 0.88	,	22510	,	22510   },
 				{ 0.9	,	22743	,	22743	},
 				{ 0.92  ,	23001	,	23001	},
-                		{ 0.94  ,   	23285   ,   	23285   },
-                		{ 1.00	,	24311	,	24311	},
+                { 0.94  ,   23285   ,   23285   },
+                { 1.00	,	24311	,	24311	},
 				{ 1.04	,	25150	,	25150	},
 				{ 1.20  ,	30000	,	30000	},
 				
