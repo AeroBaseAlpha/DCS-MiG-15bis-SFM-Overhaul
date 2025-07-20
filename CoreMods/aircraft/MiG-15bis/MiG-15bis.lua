@@ -272,7 +272,7 @@ local base_MiG_15bis =  {
 	average_fuel_consumption = 0.43,      -- Table 19 this is highly relative, was .63 test/ but good estimates are 36-40l/min = 28-31kg/min = 0.47-0.52kg/s -- 45l/min = 35kg/min = 0.583kg/s 2270 kg per hour @ cruse = 0.63 kg per second, 2250 kg h Nominal = 0.78 kgs, Max 2890 kgh =0.802 kgs table 19
 	CAS_min   = 50,       -- This is Close Air Support Time on Station in Minutes, (for AI) LOITER TIME for aircraft_task(CAS), it should be 10-15 minutes.....
     -- M = 15600 lbs
-	V_opt 		= 612 / 3.6, -- Set to ~mach 5, Corner V velocity for L/D Max, Mach .3 at 0 m =367 TAS Kph. Setting V_opt to high and AI does not have enough lift to turn fighting,  Page 24 MiG Aero Manual. -- Mach .6 735 kph @ S.L. this also given as speed for L/D max fig 54 and note below, Max Climb is 710 table 5, Original Value is 850 m 0.7.   V cruse = 1.131 Vopt.                                                                                       
+	V_opt 		= 461 / 3.6, -- 461 = Vtas for T xcess Max. Set to ~mach 5 612, Corner V velocity for L/D Max, Mach .3 at 0 m =367 TAS Kph. Setting V_opt to high and AI does not have enough lift to turn fighting,  Page 24 MiG Aero Manual. -- Mach .6 735 kph @ S.L. this also given as speed for L/D max fig 54 and note below, Max Climb is 710 table 5, Original Value is 850 m 0.7.   V cruse = 1.131 Vopt.                                                                                       
 	V_take_off 	= 76.8, 	-- Take off speed in m/s (for AI)  Figs, 25, and 30 275 KPH with 0 flaps and Weight - 5980 Original 63 mps
 	V_land 		= 83, 		-- Land speed in m/s (for AI) 300KPH
 	V_max_sea_level = 1076/3.6, --  Mission Editor Max Speed IRL = 1076  Mach 0.877 Set high to test AI Max speed at sea level in m/s (for AI)-irl
@@ -647,7 +647,6 @@ local base_MiG_15bis =  {
 	
 	lights_data = {
 		typename =	"collection",
-	
 		lights 	 = 
 		{
 			[WOLALIGHT_TAXI_LIGHTS]	= {
