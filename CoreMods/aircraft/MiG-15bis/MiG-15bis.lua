@@ -647,8 +647,7 @@ local base_MiG_15bis =  {
 	
 	lights_data = {
 		typename =	"collection",
-	lights_data = {
-		typename =	"collection",
+	
 		lights 	 = 
 		{
 			[WOLALIGHT_TAXI_LIGHTS]	= {
